@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TidyPaste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Page">
+    <a class="logo" href="#wash" aria-label="TidyPaste">
+      <svg viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect x="7" y="5" width="20" height="25" rx="6" stroke="currentColor" stroke-width="2"/><rect x="12" y="2.5" width="10" height="6" rx="3" fill="var(--bg)" stroke="currentColor" stroke-width="2"/><path d="M12 19.5l3.5 3.5 7-7.5" stroke="var(--green-text)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="caps">TidyPaste</span>
+    </a>
+    <div class="nav-links caps">
+      <a href="#wash">Tidy up</a>
+      <a href="#report">What changed</a>
+      <a href="#history">History</a>
+    </div>
+    <button class="pill-out" id="navCopy" type="button">Copy clean</button>
+  </nav>
+
+  <header class="hero">
+    <h1>Paste it messy. Copy it clean.</h1>
+    <p class="sub">Strips tracking from links, repairs broken PDF lines and removes hidden characters. The clean text is on your clipboard the moment you paste.</p>
+    <div class="life" id="life" aria-live="polite"></div>
+  </header>
+
+  <main class="tool" id="wash">
+    <div class="panes">
+      <section class="pane" aria-labelledby="in-h">
+        <div class="pane-head">
+          <h3 class="caps" id="in-h">Paste here</h3>
+          <span class="sample-note" id="sampleNote">Example loaded. Paste over it.</span>
+        </div>
+        <textarea id="in" spellcheck="false" aria-describedby="hint"></textarea>
+        <div class="hint" id="hint">Pasting into this box drops fonts, colors and other styling. <kbd class="mod">Ctrl</kbd> + <kbd>Enter</kbd> copies the clean version.</div>
+      </section>
+      <section class="pane" aria-labelledby="out-h">
+        <div class="pane-head"><h3 class="caps" id="out-h">Clean text</h3></div>
+        <textarea id="out" readonly spellcheck="false"></textarea>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+    <div class="opts" id="opts" role="group" aria-label="Cleaning options"></div>
+    <div class="actions">
+      <button class="btn primary" id="copy" type="button">Copy clean text</button>
+      <button class="btn soft" id="reset" type="button">Load example</button>
+    </div>
+  </main>
+
+  <div class="help">
+    <button class="help-link caps" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpBody">
+      Copy not working <span class="ring" aria-hidden="true">↗</span>
+    </button>
+    <p class="help-body" id="helpBody" hidden>Some browsers block automatic copying. If the green button does nothing, click inside the Clean text box, press <span class="mod">Ctrl</span> + A, then <span class="mod">Ctrl</span> + C. On a phone, press and hold in the box and choose Select all, then Copy.</p>
+  </div>
+
+  <section class="report-sec" aria-labelledby="rep-h">
+    <h2 class="big" id="rep-h">Every cleanup, accounted for</h2>
+    <div class="cols">
+      <div class="card" id="report">
+        <h3 class="caps">What changed</h3>
+        <div class="chips" id="chips"></div>
+        <ul class="links" id="links"></ul>
+      </div>
+      <div class="card" id="history">
+        <div class="row">
+          <h3 class="caps">History</h3>
+          <button type="button" id="clearHist">Clear</button>
+        </div>
+        <ul class="hist" id="hist"></ul>
+        <p class="empty" id="histEmpty" hidden>Nothing here yet. Every paste is saved so you can restore or copy it again.</p>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
